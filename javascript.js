@@ -1,4 +1,4 @@
-//lets the computer make a random choice, then returns the result.
+// lets the computer make a random choice, then returns the result.
 function computerPlay()
 {
     let random=(Math.floor(Math.random()*100)+1);
@@ -22,4 +22,27 @@ function playerSelection()
     return (choice.toLowerCase());
 }
 
-
+// takes two paramaters and returns a message indicating which one wins.
+function Round(playerSelection,computerSelection)
+{
+    if (playerSelection===computerSelection)
+    { 
+        return 'that\'s a draw'
+    }
+    else if(playerSelection === 'rock' && computerSelection==='paper'
+        || playerSelection === 'paper' && computerSelection === 'scissors'
+        || playerSelection === 'scissors' && computerSelection === 'rock')
+    { 
+        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+    }
+    else
+    { 
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
+    
+}
+// plays a round of the game by invoking the last function and using the previous functions as parameters.
+function playRound()
+{ 
+    return Round(playerSelection(),computerPlay());
+}
