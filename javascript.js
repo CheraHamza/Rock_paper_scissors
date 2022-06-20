@@ -22,22 +22,22 @@ function playerSelection()
     return (choice.toLowerCase());
 }
 
-// takes two paramaters and returns a message indicating which one wins.
+// takes two paramaters and returns a value indicating the results of the game.
 function Round(playerSelection,computerSelection)
 {
     if (playerSelection===computerSelection)
     { 
-        return 'that\'s a draw'
+        return 0;
     }
     else if(playerSelection === 'rock' && computerSelection==='paper'
         || playerSelection === 'paper' && computerSelection === 'scissors'
         || playerSelection === 'scissors' && computerSelection === 'rock')
     { 
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        return 1;
     }
     else
     { 
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
+        return 2;
     }
     
 }
@@ -45,4 +45,42 @@ function Round(playerSelection,computerSelection)
 function playRound()
 { 
     return Round(playerSelection(),computerPlay());
+}
+// plays five rounds of the game, shows result's message for each round
+// stores the score of these games and prints out a message of who's the winner.
+function game()
+{   
+    let roundResult;
+    let computerscore=0;
+    let myscore=0;
+    for ( let i = 0; i < 5; i++)
+    {
+        roundResult=playRound();
+        if(roundResult===0)
+        {
+            console.log("that's a draw!");
+        }
+        else if (roundResult===1)
+        { 
+            computerscore++;
+            console.log("you Lose!");
+        }
+        else
+        { 
+            myscore++;
+            console.log("You Win!")
+        }
+    }
+    if(myscore===computerscore)
+    { 
+        console.log("draw");
+    }
+    else if (myscore>computerscore)
+    { 
+        console.log("you are the winner!");
+    }
+    else
+    {
+        console.log("you lost!");
+    }
 }
