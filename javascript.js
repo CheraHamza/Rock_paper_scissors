@@ -15,10 +15,9 @@ function computerPlay()
         return 'scissors';
     }
 }
-// prompts the user to type in his choice.
-function playerSelection()
+
+function playerSelection(choice)
 { 
-    let choice= (prompt("choose: rock, paper or scissors ",''));
     return (choice.toLowerCase());
 }
 
@@ -27,28 +26,92 @@ function Round(playerSelection,computerSelection)
 {
     if (playerSelection===computerSelection)
     { 
-        return 0;
+        return 'draw';
     }
     else if(playerSelection === 'rock' && computerSelection==='paper'
         || playerSelection === 'paper' && computerSelection === 'scissors'
         || playerSelection === 'scissors' && computerSelection === 'rock')
     { 
-        return 1;
+        return 'lose';
     }
     else
     { 
-        return 2;
+        return 'win';
     }
     
 }
-// plays a round of the game by invoking the last function and using the previous functions as parameters.
-function playRound()
+let csScore=0;
+let plrScore=0;
+let result=0;
+
+function Playround(e)
 { 
-    return Round(playerSelection(),computerPlay());
+
+    result=Round(playerSelection(e.target.outerText),computerPlay());
+    if(csScore<5 && plrScore<5)
+    {
+        if (result==='lose')
+        {
+            csScore++;
+            output.textContent='you lose!       '
+            output.innerHTML+=`<br>Computer: ${csScore} Player: ${plrScore}`;
+        }
+        else if(result==='win')
+        {
+            plrScore++;
+            output.textContent='you win!        '
+            output.innerHTML+=`<br>Computer: ${csScore} Player: ${plrScore}`;
+        }
+        else
+        {
+            output.textContent='draw!       ';
+            output.innerHTML+=`<br>Computer: ${csScore} Player: ${plrScore}`;
+        }
+        
+    }
+    if (csScore===5)
+    {
+        output.textContent='You Have Lost The Game.';
+    }
+    else if (plrScore===5)
+    {
+        output.textContent='You Have Won The Game!';
+    }   
 }
+
+let btns = document.querySelectorAll('button'); 
+btns.forEach( btn => btn.addEventListener('click', Playround));
+const output = document.createElement('div');
+output.style.cssText='text-align:center;'
+const container = document.querySelector('div');
+container.appendChild(output);
+
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // plays five rounds of the game, shows result's message for each round
 // stores the score of these games and prints out a message of who's the winner.
-function game()
+/*function game()
 {   
     let roundResult;
     let computerscore=0;
@@ -83,4 +146,4 @@ function game()
     {
         console.log("you lost!");
     }
-}
+}*/
