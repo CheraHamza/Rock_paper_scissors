@@ -46,45 +46,65 @@ let result=0;
 
 function Playround(e)
 { 
-
-    result=Round(playerSelection(e.target.outerText),computerPlay());
+    this.classList.add('clicked');
+    let choice=playerSelection(e.target.classList[0]);
+    let csChoice=computerPlay()
+    result=Round(choice,csChoice);
     if(csScore<5 && plrScore<5)
     {
+        console.log(result);
         if (result==='lose')
         {
             csScore++;
-            output.textContent='you lose!       '
-            output.innerHTML+=`<br>Computer: ${csScore} Player: ${plrScore}`;
+            matchResult.textContent=`${choice} is beaten by ${csChoice}!`;
+            score.innerHTML=`<p>COMPUTER: ${csScore}/5</p><p>YOU: ${plrScore}/5</p>`;
         }
         else if(result==='win')
         {
             plrScore++;
-            output.textContent='you win!        '
-            output.innerHTML+=`<br>Computer: ${csScore} Player: ${plrScore}`;
+            matchResult.textContent=`${choice} beats ${csChoice}!`;
+            score.innerHTML=`<p>COMPUTER: ${csScore}/5</p><p>YOU: ${plrScore}/5</p>`;
         }
         else
         {
-            output.textContent='draw!       ';
-            output.innerHTML+=`<br>Computer: ${csScore} Player: ${plrScore}`;
+            matchResult.textContent=`${choice} ties with ${csChoice}!`;
+            score.innerHTML=`<p>COMPUTER: ${csScore}/5</p><p>YOU: ${plrScore}/5</p>`;
         }
         
     }
     if (csScore===5)
     {
-        output.textContent='You Have Lost The Game.';
+        finalResult.textContent='You Have Lost The Game!';
     }
     else if (plrScore===5)
     {
-        output.textContent='You Have Won The Game!';
+        finalResult.textContent='You Have Won The Game!';
     }   
+}
+
+function removeTransition(e)
+{
+    if(e.propertyName !== 'transform') return;
+    this.classList.remove('clicked');
 }
 
 let btns = document.querySelectorAll('button'); 
 btns.forEach( btn => btn.addEventListener('click', Playround));
-const output = document.createElement('div');
-output.style.cssText='text-align:center;'
-const container = document.querySelector('div');
-container.appendChild(output);
+btns.forEach(btn => btn.addEventListener('transitionend',removeTransition));
+
+const container = document.querySelector('body');
+
+const score= document.querySelector('.score');
+
+const matchResult = document.createElement('div');
+matchResult.style.cssText="font-family: 'Permanent Marker', cursive; text-align:center; font-size:25px; font-weight:bold;"
+container.appendChild(matchResult);
+
+const finalResult =document.createElement('div');
+finalResult.style.cssText="font-family: 'Permanent Marker', cursive; text-align:center; font-size:30px; font-weight:bolder;"
+container.appendChild(finalResult);
+
+
 
 
 

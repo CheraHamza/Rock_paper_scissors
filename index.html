@@ -5,30 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R-P-S Game</title>
+    <link rel="stylesheet" href="./style.css">
     <script src="javascript.js" defer></script>
 </head>
 <body>
-    <div>
-        <button class="btn">Rock</button>
-        <button class="btn">Paper</button>
-        <button class="btn">Scissor</button>
+    <div class="score">
+        <p>COMPUTER: 0/5</p>
+        <p>YOU: 0/5</p>
     </div>
-    <style>
-        body{
-            display: flex;
-            align-self: center;
-            justify-content: center;
-            
-        }
-        button{
-            height: 200px;
-            width: 200px;
-            border-radius: 5px;
-            background-color: lightblue;
-            font-size: large;
-            font-weight: bold;
-        }
-    </style>
+    <div class="container">
+        <button class="rock">✊</button>
+        <button class="paper">🖐</button>
+        <button class="scissors">✌</button>
+    </div>
+    <div id="footer" class="copywrite">
+        <a class="credit" href="https://github.com/CheraHamza">@CheraHamza</a>
+        <img src="./GitHub-Logo.png" width="40px" height="25px" alt="github logo">
+    </div>
 </body>
 
 </html>
