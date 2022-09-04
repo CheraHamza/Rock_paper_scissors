@@ -30,7 +30,8 @@ html, body{
 }
 
 button{
-    font-size: 110px;
+    height: auto;
+    font-size: 550%;
     font-weight: bold;
     padding: 20px;
     background-color: black;
