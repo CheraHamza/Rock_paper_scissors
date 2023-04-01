@@ -1,3 +1,6 @@
+const matchResult = document.querySelector('.matchResult');
+const finalResult =document.querySelector('.finalResult');
+
 // lets the computer make a random choice, then returns the result.
 function computerPlay()
 {
@@ -21,7 +24,7 @@ function playerSelection(choice)
     return (choice.toLowerCase());
 }
 
-// takes two paramaters and returns a value indicating the results of the game.
+// takes two parameters and returns a value indicating the results of the game.
 function Round(playerSelection,computerSelection)
 {
     if (playerSelection===computerSelection)
@@ -92,17 +95,13 @@ let btns = document.querySelectorAll('button');
 btns.forEach( btn => btn.addEventListener('click', Playround));
 btns.forEach(btn => btn.addEventListener('transitionend',removeTransition));
 
-const container = document.querySelector('body');
 
 const score= document.querySelector('.score');
 
-const matchResult = document.createElement('div');
-matchResult.style.cssText="font-family: 'Permanent Marker', cursive; text-align:center; font-size:25px; font-weight:bold;"
-container.appendChild(matchResult);
 
-const finalResult =document.createElement('div');
-finalResult.style.cssText="font-family: 'Permanent Marker', cursive; text-align:center; font-size:30px; font-weight:bolder;"
-container.appendChild(finalResult);
+
+
+
 
 
 
